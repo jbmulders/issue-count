@@ -1,0 +1,16 @@
+@import '../../../colors';
+
+:host {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+}
+
+div {
+  background-color: $dark-gray;
+  color: $white;
+  min-width: 250px;
+  padding: 1em;
+  border-radius: 5px;
+  text-align: center;
+}

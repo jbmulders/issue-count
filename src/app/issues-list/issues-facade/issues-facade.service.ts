@@ -14,6 +14,10 @@ export class IssuesFacade {
     return this.issuesService.tableState$;
   }
 
+  get errorMessage$(): Observable<{ message: string }> {
+    return this.issuesService.error$;
+  }
+
   constructor(private issuesService: IssuesService) {}
 
   getTableHeaders(): { value: string; sortProp: string; label: string }[] {
@@ -61,9 +65,7 @@ export class IssuesFacade {
 
       reader.readAsText(file);
     } else {
-      this.issuesService.handleError(
-        'Something went wrong uploading the file...'
-      );
+      this.issuesService.handleError('The file seems to be invalid..');
     }
   }
 
@@ -76,6 +78,6 @@ export class IssuesFacade {
   }
 
   private validateFile(file: File): boolean {
-    return file.type === 'text/csv' && file.size < 100000;
+    return file.type === 'text/csv';
   }
 }

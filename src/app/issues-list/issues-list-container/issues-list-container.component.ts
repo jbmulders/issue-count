@@ -12,6 +12,7 @@ import { ITabelState } from 'app/model/tabel-state';
 export class IssuesListContainerComponent implements OnInit {
   issues$: Observable<IIssue[]>;
   tableState$: Observable<ITabelState>;
+  error$: Observable<{ message: string }>;
   tableHeaders: { value: string; sortProp: string; label: string }[];
 
   constructor(private issuesFacade: IssuesFacade) {}
@@ -19,6 +20,7 @@ export class IssuesListContainerComponent implements OnInit {
   ngOnInit(): void {
     this.issues$ = this.issuesFacade.getIssues();
     this.tableState$ = this.issuesFacade.tableState$;
+    this.error$ = this.issuesFacade.errorMessage$;
     this.tableHeaders = this.issuesFacade.getTableHeaders();
   }
 

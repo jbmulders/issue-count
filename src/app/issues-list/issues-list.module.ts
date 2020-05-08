@@ -7,6 +7,7 @@ import { IssuesTableComponent } from './issues-table/issues-table.component';
 import { IssuesService } from './issues-service/issues.service';
 import { IssuesUploadComponent } from './issues-upload/issues-upload.component';
 import { IssuesFacade } from './issues-facade/issues-facade.service';
+import { SharedModule } from 'app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { IssuesFacade } from './issues-facade/issues-facade.service';
     IssuesTableComponent,
     IssuesUploadComponent,
   ],
-  imports: [CommonModule, IssuesListRoutingModule],
+  imports: [CommonModule, IssuesListRoutingModule, SharedModule],
   providers: [IssuesService, IssuesFacade],
 })
 export class IssuesListModule {}
