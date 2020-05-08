@@ -1,4 +1,10 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Output,
+  EventEmitter,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 
 @Component({
   selector: 'app-issues-upload',
@@ -6,6 +12,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./issues-upload.component.scss'],
 })
 export class IssuesUploadComponent {
+  @ViewChild('fileInput') fileInput: ElementRef;
   @Output() fileChange: EventEmitter<{ file: File }> = new EventEmitter();
 
   fileSelected(event: Event) {
@@ -14,6 +21,7 @@ export class IssuesUploadComponent {
 
     if (file) {
       this.fileChange.emit({ file });
+      this.fileInput.nativeElement.value = null;
     }
   }
 }

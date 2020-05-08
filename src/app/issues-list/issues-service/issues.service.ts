@@ -10,17 +10,17 @@ export enum ESortDirection {
 
 @Injectable()
 export class IssuesService {
-  private issues: IIssue[];
   private issuesSubject: BehaviorSubject<IIssue[]>;
   private tableStateSubject: BehaviorSubject<ITabelState>;
   private errorSubject: BehaviorSubject<{ message: string }>;
 
   // table state
+  private issues: IIssue[];
   private sortProp: string;
-  private sortDirection: string; // asc or desc
+  private sortDirection: string;
   private tablePage: number;
   private tableTotalPages: number;
-  public readonly tablePageSize = 10;
+  public readonly tablePageSize: number;
 
   get issues$(): Observable<IIssue[]> {
     return this.issuesSubject.asObservable();
@@ -34,12 +34,12 @@ export class IssuesService {
 
   constructor() {
     // default table state
+    this.issues = [];
     this.sortProp = EIssueProps.lastName;
     this.sortDirection = ESortDirection.asc;
     this.tablePage = 1;
     this.tableTotalPages = 1;
-
-    this.issues = [];
+    this.tablePageSize = 10;
 
     this.issuesSubject = new BehaviorSubject(this.issues);
     this.tableStateSubject = new BehaviorSubject(this.getTableState());
@@ -55,6 +55,8 @@ export class IssuesService {
       .map((row) => this.getIssueByRow(row));
 
     this.tablePage = 1;
+    this.sortProp = EIssueProps.lastName;
+    this.sortDirection = ESortDirection.asc;
     this.tableTotalPages = Math.ceil(this.issues.length / this.tablePageSize);
 
     this.notify();

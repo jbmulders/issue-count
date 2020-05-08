@@ -32,11 +32,11 @@ export class IssuesFacade {
   getIssues(): Observable<IIssue[]> {
     return combineLatest([this.issuesService.issues$, this.tableState$]).pipe(
       map(([issues, state]: [IIssue[], ITabelState]) => {
-        issues.sort((a, b) => (a[state.orderBy] > b[state.orderBy] ? 1 : -1));
+        const order = state.direction === ESortDirection.asc ? 1 : -1;
 
-        if (state.direction === ESortDirection.dsc) {
-          issues.reverse();
-        }
+        issues.sort((a, b) =>
+          a[state.orderBy] > b[state.orderBy] ? order : -order
+        );
 
         return issues.slice(
           (state.page - 1) * this.issuesService.tablePageSize,
@@ -61,7 +61,6 @@ export class IssuesFacade {
 
       reader.readAsText(file);
     } else {
-      // invalid file
       this.issuesService.handleError(
         'Something went wrong uploading the file...'
       );
