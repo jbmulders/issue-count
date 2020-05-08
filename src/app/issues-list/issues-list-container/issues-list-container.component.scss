@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+app-issues-table {
+  width: 1200px;
+}
+
+@media only screen and (max-width: 1200px) {
+  app-issues-table {
+    width: 100%;
+  }
+}

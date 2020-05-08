@@ -1,9 +1,14 @@
-@import "../../../colors";
+@import '../../../colors';
 
 table {
   border-collapse: collapse;
   width: 100%;
 }
+
+th.selected {
+  color: $primary;
+}
+
 td,
 th {
   text-align: left;
@@ -15,7 +20,21 @@ th {
   cursor: pointer;
 }
 
+tr.header {
+  border-bottom: 2px solid $primary;
+}
+
 tr {
   display: flex;
   flex-direction: row;
+}
+
+tr:nth-child(even) {
+  background-color: $light-gray;
+}
+
+@media only screen and (max-width: 600px) {
+  :host {
+    font-size: 0.9em;
+  }
 }

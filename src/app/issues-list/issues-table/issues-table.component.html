@@ -1,8 +1,9 @@
 <div class="card">
   <div class="card-content">
     <table *ngIf="issues.length > 0; else noItems">
-      <tr>
+      <tr class="header">
         <th
+          [class]="tableState.orderBy === header.sortProp ? 'selected' : ''"
           *ngFor="let header of tableHeaders"
           (click)="headerClicked(header.sortProp)"
         >
@@ -39,6 +40,13 @@
     </button>
   </div>
   <div class="card-actions" *ngIf="issues.length > 0">
-    Page {{ tableState.page }} / {{ tableState.totalPages }}
+    Page {{ tableState.page }} / {{ tableState.totalPages }} |
+    {{ (tableState.page - 1) * tableState.pageSize + 1 }} -
+    {{
+      tableState.page === tableState.totalPages
+        ? tableState.totalItems
+        : tableState.page * tableState.pageSize
+    }}
+    of {{ tableState.totalItems }}
   </div>
 </div>

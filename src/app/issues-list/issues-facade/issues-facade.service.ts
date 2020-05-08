@@ -6,11 +6,11 @@ import {
   ESortDirection,
 } from '../issues-service/issues.service';
 import { IIssue } from 'app/model/issue';
-import { ITabelState } from 'app/model/tabel-state';
+import { ITableState } from 'app/model/table-state';
 
 @Injectable()
 export class IssuesFacade {
-  get tableState$(): Observable<ITabelState> {
+  get tableState$(): Observable<ITableState> {
     return this.issuesService.tableState$;
   }
 
@@ -35,7 +35,7 @@ export class IssuesFacade {
 
   getIssues(): Observable<IIssue[]> {
     return combineLatest([this.issuesService.issues$, this.tableState$]).pipe(
-      map(([issues, state]: [IIssue[], ITabelState]) => {
+      map(([issues, state]: [IIssue[], ITableState]) => {
         const order = state.direction === ESortDirection.asc ? 1 : -1;
 
         issues.sort((a, b) =>

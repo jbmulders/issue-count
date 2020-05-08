@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { IIssue } from 'app/model/issue';
-import { ITabelState } from 'app/model/tabel-state';
+import { ITableState } from 'app/model/table-state';
 
 @Component({
   selector: 'app-issues-table',
@@ -10,7 +10,7 @@ import { ITabelState } from 'app/model/tabel-state';
 export class IssuesTableComponent {
   @Input() tableHeaders: { value: string; sortProp: string; label: string }[];
   @Input() issues: IIssue[];
-  @Input() tableState: ITabelState;
+  @Input() tableState: ITableState;
   @Output() sortPropChange: EventEmitter<{ prop: string }> = new EventEmitter();
   @Output() pageChange: EventEmitter<{ page: number }> = new EventEmitter();
 

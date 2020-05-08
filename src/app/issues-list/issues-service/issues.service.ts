@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IIssue, EIssueProps } from 'app/model/issue';
-import { ITabelState } from 'app/model/tabel-state';
+import { ITableState } from 'app/model/table-state';
 
 export enum ESortDirection {
   asc = 'asc',
@@ -11,7 +11,7 @@ export enum ESortDirection {
 @Injectable()
 export class IssuesService {
   private issuesSubject: BehaviorSubject<IIssue[]>;
-  private tableStateSubject: BehaviorSubject<ITabelState>;
+  private tableStateSubject: BehaviorSubject<ITableState>;
   private errorSubject: BehaviorSubject<{ message: string }>;
 
   // table state
@@ -20,12 +20,13 @@ export class IssuesService {
   private sortDirection: string;
   private tablePage: number;
   private tableTotalPages: number;
+  private tableTotalItems: number;
   public readonly tablePageSize: number;
 
   get issues$(): Observable<IIssue[]> {
     return this.issuesSubject.asObservable();
   }
-  get tableState$(): Observable<ITabelState> {
+  get tableState$(): Observable<ITableState> {
     return this.tableStateSubject.asObservable();
   }
   get error$(): Observable<{ message: string }> {
@@ -54,6 +55,7 @@ export class IssuesService {
       .filter((row) => row.length > 0)
       .map((row) => this.getIssueByRow(row));
 
+    this.tableTotalItems = this.issues.length;
     this.tablePage = 1;
     this.sortProp = EIssueProps.lastName;
     this.sortDirection = ESortDirection.asc;
@@ -104,12 +106,14 @@ export class IssuesService {
     };
   }
 
-  private getTableState(): ITabelState {
+  private getTableState(): ITableState {
     return {
       page: this.tablePage,
       totalPages: this.tableTotalPages,
       orderBy: this.sortProp,
       direction: this.sortDirection,
+      pageSize: this.tablePageSize,
+      totalItems: this.tableTotalItems,
     };
   }
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IssuesFacade } from '../issues-facade/issues-facade.service';
 import { Observable } from 'rxjs';
 import { IIssue } from 'app/model/issue';
-import { ITabelState } from 'app/model/tabel-state';
+import { ITableState } from 'app/model/table-state';
 
 @Component({
   selector: 'app-issues-list-container',
@@ -11,7 +11,7 @@ import { ITabelState } from 'app/model/tabel-state';
 })
 export class IssuesListContainerComponent implements OnInit {
   issues$: Observable<IIssue[]>;
-  tableState$: Observable<ITabelState>;
+  tableState$: Observable<ITableState>;
   error$: Observable<{ message: string }>;
   tableHeaders: { value: string; sortProp: string; label: string }[];
 
