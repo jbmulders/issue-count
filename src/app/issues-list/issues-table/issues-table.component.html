@@ -1,0 +1,44 @@
+<div class="card">
+  <div class="card-content">
+    <table *ngIf="issues.length > 0; else noItems">
+      <tr>
+        <th
+          *ngFor="let header of tableHeaders"
+          (click)="headerClicked(header.sortProp)"
+        >
+          {{ header.label }}
+          <span *ngIf="tableState.orderBy === header.sortProp">
+            | {{ tableState.direction | uppercase }}</span
+          >
+        </th>
+      </tr>
+      <tr *ngFor="let issue of issues">
+        <td *ngFor="let header of tableHeaders">{{ issue[header.value] }}</td>
+      </tr>
+    </table>
+
+    <ng-template #noItems>
+      No items to show, upload a file to continue
+    </ng-template>
+  </div>
+  <div class="card-actions" *ngIf="issues.length > 0">
+    <button [disabled]="tableState.page === 1" (click)="setPage(1)"><<</button>
+
+    <button
+      [disabled]="tableState.page === 1"
+      (click)="setPage(tableState.page - 1)"
+    >
+      <
+    </button>
+
+    <button
+      [disabled]="tableState.page === tableState.totalPages"
+      (click)="setPage(tableState.page + 1)"
+    >
+      >
+    </button>
+  </div>
+  <div class="card-actions" *ngIf="issues.length > 0">
+    Page {{ tableState.page }} / {{ tableState.totalPages }}
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<app-issues-table
+  [tableHeaders]="tableHeaders"
+  [issues]="issues$ | async"
+  [tableState]="tableState$ | async"
+  (sortPropChange)="sortPropChanged($event)"
+  (pageChange)="tablePageChanged($event)"
+></app-issues-table>
+<app-issues-upload (fileChange)="fileChanged($event)"></app-issues-upload>

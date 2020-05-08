@@ -1,0 +1,8 @@
+<input
+  #fileInput
+  type="file"
+  accept=".csv"
+  (change)="fileSelected($event)"
+  hidden
+/>
+<button (click)="fileInput.click()">UPLOAD FILE</button>

@@ -1,0 +1,66 @@
+@import "./colors";
+
+$font-family: Roboto, "Helvetica Neue", sans-serif;
+
+html {
+  background-color: $light-gray;
+}
+body {
+  font-family: $font-family;
+}
+
+button {
+  background-color: transparent;
+  color: $primary;
+  border: 2px solid $primary;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: $lightest-gray;
+}
+
+button[disabled] {
+  background-color: $light-gray;
+  color: $dark-gray;
+  border: 2px solid $dark-gray;
+  cursor: auto;
+}
+
+button[disabled]:hover {
+  background-color: $light-gray;
+}
+
+div.card {
+  div {
+    margin: 5px 0;
+  }
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  background-color: $white;
+  border-radius: 5px;
+
+  .card-header {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+
+  .card-content {
+    height: 100%;
+  }
+
+  .card-actions {
+    flex-direction: row;
+    justify-content: flex-end;
+    display: flex;
+    align-items: center;
+  }
+}

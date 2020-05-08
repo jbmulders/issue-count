@@ -1,0 +1,21 @@
+@import "../../../colors";
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+td,
+th {
+  text-align: left;
+  padding: 8px;
+  flex: 1;
+}
+
+th {
+  cursor: pointer;
+}
+
+tr {
+  display: flex;
+  flex-direction: row;
+}
