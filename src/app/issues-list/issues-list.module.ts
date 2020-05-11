@@ -6,7 +6,7 @@ import { IssuesListContainerComponent } from './issues-list-container/issues-lis
 import { IssuesTableComponent } from './issues-table/issues-table.component';
 import { IssuesService } from './issues-service/issues.service';
 import { IssuesUploadComponent } from './issues-upload/issues-upload.component';
-import { IssuesFacade } from './issues-facade/issues-facade.service';
+import { IssuesFacade } from './issues-facade/issues.facade';
 import { SharedModule } from 'app/shared/shared.module';
 
 @NgModule({

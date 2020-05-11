@@ -3,19 +3,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IssuesListContainerComponent } from './issues-list-container.component';
 import { of, Observable, combineLatest } from 'rxjs';
 import { ITableState, IIssue } from '@model';
-import { IssuesFacade } from '../issues-facade/issues-facade.service';
+import { IssuesFacade } from '../issues-facade/issues.facade';
 
 class MockIssuesFacade {
   get tableState$(): Observable<ITableState> {
     return of(null);
-    // return of({
-    //   page: 1,
-    //   orderBy: 'lastName',
-    //   direction: 'asc',
-    //   pageSize: 10,
-    //   totalItems: 0,
-    //   totalPages: 0,
-    // });
   }
 
   get errorMessage$(): Observable<{ message: string }> {
@@ -24,7 +16,6 @@ class MockIssuesFacade {
 
   getTableHeaders(): { value: string; sortProp: string; label: string }[] {
     return [];
-    fileChanged;
   }
 
   getIssues(): Observable<IIssue[]> {
@@ -38,7 +29,7 @@ class MockIssuesFacade {
   handleTablePageChanged(page: number) {}
 }
 
-fdescribe('IssuesListContainerComponent [u]', () => {
+describe('IssuesListContainerComponent [u]', () => {
   let component: IssuesListContainerComponent;
   let mockIssuesFacade: any;
 
@@ -72,34 +63,13 @@ fdescribe('IssuesListContainerComponent [u]', () => {
     spyOn(mockIssuesFacade, 'handleTablePageChanged');
 
     // act
-    component.fileChanged(null);
-    component.tablePageChanged(null);
-    component.sortPropChanged(null);
+    component.fileChanged({ file: null });
+    component.tablePageChanged({ page: null });
+    component.sortPropChanged({ prop: null });
 
     // assert
     expect(mockIssuesFacade.handleFileUpload).toHaveBeenCalledTimes(1);
     expect(mockIssuesFacade.handleSortPropChanged).toHaveBeenCalledTimes(1);
     expect(mockIssuesFacade.handleTablePageChanged).toHaveBeenCalledTimes(1);
-  });
-});
-
-describe('IssuesListContainerComponent [i]', () => {
-  let component: IssuesListContainerComponent;
-  let fixture: ComponentFixture<IssuesListContainerComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [IssuesListContainerComponent],
-    }).compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(IssuesListContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
   });
 });

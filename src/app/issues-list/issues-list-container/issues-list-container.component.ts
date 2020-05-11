@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IssuesFacade } from '../issues-facade/issues-facade.service';
+import { IssuesFacade } from '../issues-facade/issues.facade';
 import { Observable } from 'rxjs';
 import { IIssue, ITableState } from '@model';
 

@@ -80,6 +80,18 @@ describe('IssuesService [u]', () => {
     });
   });
 
+  it('should update tableState when `changeSortProp` is called with the same prop twice', (done) => {
+    // arrange
+    service.changeSortProp('test');
+    service.changeSortProp('test');
+    service.tableState$.subscribe((state: ITableState) => {
+      // assert
+      expect(state.direction).toEqual('dsc');
+
+      done();
+    });
+  });
+
   it('should update tableState when `changePageSize` is called with valid size number', (done) => {
     // arrange
     service.changePageSize(2);
