@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { IIssue, EIssueProps } from 'app/model/issue';
-import { ITableState } from 'app/model/table-state';
+import { IIssue, EIssueProps, ITableState } from '@model';
 
 export enum ESortDirection {
   asc = 'asc',
@@ -21,7 +20,7 @@ export class IssuesService {
   private tablePage: number;
   private tableTotalPages: number;
   private tableTotalItems: number;
-  public readonly tablePageSize: number;
+  public tablePageSize: number;
 
   get issues$(): Observable<IIssue[]> {
     return this.issuesSubject.asObservable();
@@ -61,7 +60,11 @@ export class IssuesService {
     this.sortDirection = ESortDirection.asc;
     this.tableTotalPages = Math.ceil(this.issues.length / this.tablePageSize);
 
-    this.notify();
+    if (this.issues.length > 0) {
+      this.notify();
+    } else {
+      this.handleError('No data...');
+    }
   }
 
   changeSortProp(prop: string) {
@@ -83,6 +86,15 @@ export class IssuesService {
   changePage(page: number) {
     if (page > 0 && page <= this.tableTotalPages) {
       this.tablePage = page;
+      this.notify();
+    }
+  }
+
+  changePageSize(size: number) {
+    if (size > 0) {
+      this.tablePage = 1;
+      this.tablePageSize = size;
+      this.tableTotalPages = Math.ceil(this.issues.length / this.tablePageSize);
       this.notify();
     }
   }

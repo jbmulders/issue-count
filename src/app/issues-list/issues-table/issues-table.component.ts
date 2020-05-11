@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { IIssue } from 'app/model/issue';
-import { ITableState } from 'app/model/table-state';
+import { IIssue, ITableState } from '@model';
 
 @Component({
   selector: 'app-issues-table',

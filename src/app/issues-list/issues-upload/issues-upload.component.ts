@@ -15,7 +15,7 @@ export class IssuesUploadComponent {
   @ViewChild('fileInput') fileInput: ElementRef;
   @Output() fileChange: EventEmitter<{ file: File }> = new EventEmitter();
 
-  fileSelected(event: Event) {
+  fileSelected(event: Event | { target: { files: File[] } }) {
     const target = event.target as HTMLInputElement;
     const file = target.files[0];
 

@@ -22,10 +22,17 @@
       No items to show, upload a file to continue
     </ng-template>
   </div>
-  <div class="card-actions" *ngIf="issues.length > 0">
-    <button [disabled]="tableState.page === 1" (click)="setPage(1)"><<</button>
+  <div id="tableactions" class="card-actions" *ngIf="issues.length > 0">
+    <button
+      id="btnpagereset"
+      [disabled]="tableState.page === 1"
+      (click)="setPage(1)"
+    >
+      <<
+    </button>
 
     <button
+      id="btnprevpage"
       [disabled]="tableState.page === 1"
       (click)="setPage(tableState.page - 1)"
     >
@@ -33,13 +40,14 @@
     </button>
 
     <button
+      id="btnnextpage"
       [disabled]="tableState.page === tableState.totalPages"
       (click)="setPage(tableState.page + 1)"
     >
       >
     </button>
   </div>
-  <div class="card-actions" *ngIf="issues.length > 0">
+  <div id="tablepageinfo" class="card-actions" *ngIf="issues.length > 0">
     Page {{ tableState.page }} / {{ tableState.totalPages }} |
     {{ (tableState.page - 1) * tableState.pageSize + 1 }} -
     {{

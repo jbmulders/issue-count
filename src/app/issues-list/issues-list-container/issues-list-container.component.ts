@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IssuesFacade } from '../issues-facade/issues-facade.service';
 import { Observable } from 'rxjs';
-import { IIssue } from 'app/model/issue';
-import { ITableState } from 'app/model/table-state';
+import { IIssue, ITableState } from '@model';
 
 @Component({
   selector: 'app-issues-list-container',

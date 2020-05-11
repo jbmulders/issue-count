@@ -5,8 +5,7 @@ import {
   IssuesService,
   ESortDirection,
 } from '../issues-service/issues.service';
-import { IIssue } from 'app/model/issue';
-import { ITableState } from 'app/model/table-state';
+import { IIssue, ITableState } from '@model';
 
 @Injectable()
 export class IssuesFacade {
@@ -43,8 +42,8 @@ export class IssuesFacade {
         );
 
         return issues.slice(
-          (state.page - 1) * this.issuesService.tablePageSize,
-          state.page * this.issuesService.tablePageSize
+          (state.page - 1) * state.pageSize,
+          state.page * state.pageSize
         );
       })
     );

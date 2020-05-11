@@ -2,15 +2,19 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { IssuesUploadComponent } from './issues-upload.component';
 
-describe('IssuesUploadComponent', () => {
+describe('IssuesUploadComponent [i]', () => {
   let component: IssuesUploadComponent;
   let fixture: ComponentFixture<IssuesUploadComponent>;
 
+  const testFile = new File(['test'], 'test.csv', {
+    type: 'text/csv',
+  });
+  const testEvent = { target: { files: [testFile] } };
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ IssuesUploadComponent ]
-    })
-    .compileComponents();
+      declarations: [IssuesUploadComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -21,5 +25,16 @@ describe('IssuesUploadComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should emit the selected file', () => {
+    // arrange
+    spyOn(component.fileChange, 'emit');
+
+    // act
+    component.fileSelected(testEvent);
+
+    // assert
+    expect(component.fileChange.emit).toHaveBeenCalledWith({ file: testFile });
   });
 });
