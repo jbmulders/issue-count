@@ -6,10 +6,10 @@ describe('IssuesUploadComponent [i]', () => {
   let component: IssuesUploadComponent;
   let fixture: ComponentFixture<IssuesUploadComponent>;
 
-  const testFile = new File(['test'], 'test.csv', {
+  const mockFile = new File(['test'], 'test.csv', {
     type: 'text/csv',
   });
-  const testEvent = { target: { files: [testFile] } };
+  const mockEvent = { target: { files: [mockFile] } };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -32,9 +32,11 @@ describe('IssuesUploadComponent [i]', () => {
     spyOn(component.fileChange, 'emit');
 
     // act
-    component.fileSelected(testEvent);
+    component.fileSelected(mockEvent);
 
     // assert
-    expect(component.fileChange.emit).toHaveBeenCalledWith({ file: testFile });
+    expect(component.fileChange.emit).toHaveBeenCalledWith({
+      file: mockEvent.target.files[0],
+    });
   });
 });

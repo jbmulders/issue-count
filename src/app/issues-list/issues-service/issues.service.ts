@@ -63,7 +63,7 @@ export class IssuesService {
     if (this.issues.length > 0) {
       this.notify();
     } else {
-      this.handleError('No data...');
+      this.handleError('This file seems to be empty...');
     }
   }
 

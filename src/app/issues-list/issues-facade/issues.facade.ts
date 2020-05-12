@@ -77,6 +77,6 @@ export class IssuesFacade {
   }
 
   private validateFile(file: File): boolean {
-    return file.type === 'text/csv';
+    return file?.type === 'text/csv';
   }
 }
