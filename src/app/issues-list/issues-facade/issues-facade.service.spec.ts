@@ -2,7 +2,6 @@ import { IssuesFacade } from './issues.facade';
 import { IssuesService } from '../issues-service/issues.service';
 import { of, Observable, combineLatest } from 'rxjs';
 import { IIssue, ITableState } from '@model';
-import { fakeAsync, tick } from '@angular/core/testing';
 
 class MockIssuesService {
   get issues$(): Observable<IIssue[]> {

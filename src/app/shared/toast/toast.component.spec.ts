@@ -10,7 +10,7 @@ import { of } from 'rxjs';
 
 import { ToastComponent } from './toast.component';
 
-const testData = { message: 'test' };
+const mockData = { message: 'test' };
 
 describe('ToastComponent [u]', () => {
   let component: ToastComponent;
@@ -35,7 +35,7 @@ describe('ToastComponent [u]', () => {
 
   it('should set `show` to true when new message is emitted', fakeAsync(() => {
     // arrange
-    component.error$ = of(testData);
+    component.error$ = of(mockData);
 
     // act
     component.ngOnInit();
@@ -50,7 +50,7 @@ describe('ToastComponent [u]', () => {
 
   it('should set `show` to false 4 seconds after new message is emitted', fakeAsync(() => {
     // arrange
-    component.error$ = of(testData);
+    component.error$ = of(mockData);
 
     // act
     component.ngOnInit();
@@ -74,7 +74,7 @@ describe('ToastComponent [i]', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ToastComponent);
     component = fixture.componentInstance;
-    component.error$ = of(testData);
+    component.error$ = of(mockData);
     fixture.detectChanges();
   });
 
@@ -101,7 +101,7 @@ describe('ToastComponent [i]', () => {
     const messageContainer = fixture.debugElement.query(By.css('div'));
 
     expect(messageContainer.nativeElement.textContent.trim()).toEqual(
-      testData.message
+      mockData.message
     );
   });
 });

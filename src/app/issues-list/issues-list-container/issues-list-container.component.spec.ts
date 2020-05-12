@@ -1,5 +1,3 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { IssuesListContainerComponent } from './issues-list-container.component';
 import { of, Observable, combineLatest } from 'rxjs';
 import { ITableState, IIssue } from '@model';

@@ -1,6 +1,4 @@
-import { TestBed } from '@angular/core/testing';
-
-import { IssuesService } from './issues.service';
+import { IssuesService, ESortDirection } from './issues.service';
 import { ITableState, IIssue } from '@model';
 
 const mockFileContent = `h1;h2;h3;h4
@@ -24,7 +22,7 @@ describe('IssuesService [u]', () => {
       // assert
       expect(state.page).toEqual(1);
       expect(state.totalPages).toEqual(1);
-      expect(state.direction).toEqual('asc');
+      expect(state.direction).toEqual(ESortDirection.asc);
       expect(state.orderBy).toEqual('lastName');
       done();
     });
@@ -50,7 +48,7 @@ describe('IssuesService [u]', () => {
 
       expect(state.page).toEqual(1);
       expect(state.totalPages).toEqual(1);
-      expect(state.direction).toEqual('asc');
+      expect(state.direction).toEqual(ESortDirection.asc);
       expect(state.orderBy).toEqual('lastName');
       expect(state.totalItems).toEqual(4);
 
@@ -86,7 +84,7 @@ describe('IssuesService [u]', () => {
     service.changeSortProp('test');
     service.tableState$.subscribe((state: ITableState) => {
       // assert
-      expect(state.direction).toEqual('dsc');
+      expect(state.direction).toEqual(ESortDirection.dsc);
 
       done();
     });

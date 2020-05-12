@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IssuesTableComponent } from './issues-table.component';
 import { IIssue } from '@model';
 import { By } from '@angular/platform-browser';
+import { ESortDirection } from '../issues-service/issues.service';
 
 const mockIssue: IIssue = {
   firstName: 'test',
@@ -31,7 +32,7 @@ describe('IssuesTableComponent [i]', () => {
       totalItems: 0,
       orderBy: 'lastName',
       pageSize: 10,
-      direction: 'asc',
+      direction: ESortDirection.asc,
     };
     component.tableHeaders = [
       { value: 'firstName', sortProp: 'firstName', label: 'First Name' },
