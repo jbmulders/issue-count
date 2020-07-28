@@ -14,6 +14,10 @@ export const routes: Routes = [
     redirectTo: 'issues',
     pathMatch: 'full',
   },
+  {
+    path: '**',
+    redirectTo: 'issues',
+  },
 ];
 
 @NgModule({
