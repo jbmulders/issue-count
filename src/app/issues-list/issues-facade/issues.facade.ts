@@ -32,7 +32,7 @@ export class IssuesFacade {
     ];
   }
 
-  getIssues(): Observable<IIssue[]> {
+  getIssues$(): Observable<IIssue[]> {
     return combineLatest([this.issuesService.issues$, this.tableState$]).pipe(
       map(([issues, state]: [IIssue[], ITableState]) => {
         const order = state.direction === ESortDirection.asc ? 1 : -1;

@@ -17,7 +17,7 @@ export class IssuesListContainerComponent implements OnInit {
   constructor(private issuesFacade: IssuesFacade) {}
 
   ngOnInit(): void {
-    this.issues$ = this.issuesFacade.getIssues();
+    this.issues$ = this.issuesFacade.getIssues$();
     this.tableState$ = this.issuesFacade.tableState$;
     this.error$ = this.issuesFacade.errorMessage$;
     this.tableHeaders = this.issuesFacade.getTableHeaders();
