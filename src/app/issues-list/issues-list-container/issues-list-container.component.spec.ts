@@ -16,7 +16,7 @@ class MockIssuesFacade {
     return [];
   }
 
-  getIssues(): Observable<IIssue[]> {
+  getIssues$(): Observable<IIssue[]> {
     return of(null);
   }
 

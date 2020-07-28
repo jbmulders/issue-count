@@ -57,7 +57,7 @@ describe('IssuesFacadeService [u]', () => {
   it('should expose observables to pass data to container(s)', (done) => {
     // arrange, act
     combineLatest([
-      facade.getIssues(),
+      facade.getIssues$(),
       facade.tableState$,
       facade.errorMessage$,
     ]).subscribe(([issues, state, error]) => {
